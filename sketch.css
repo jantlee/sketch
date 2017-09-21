@@ -1,5 +1,7 @@
 * {
 	border: 1px solid black;
+	margin: 0;
+	padding: 0;
 }
 
 nav {
@@ -9,4 +11,15 @@ nav {
 .pad {
 	height: 100%;
 	width: 100%;
+	display: inline-grid;
+	/*grid-template-columns: 100px 100px 100px 100px 100px;*/
+
+	/*grid-template-rows: 5;*/
+}
+
+.pad-pixel {
+	height: 100px;
+	width: 100px;
+	border: 1px solid purple;	
+	/*display: inline-block;*/
 }
