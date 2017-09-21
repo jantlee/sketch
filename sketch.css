@@ -15,13 +15,9 @@ nav {
 	height: inherit;
 	width: inherit;
 	display: inline-grid;
-	/*border: 2px solid black;*/
 	margin: 0;
 	padding: 0;
-	/*margin: 0 auto;*/
-	/*grid-template-columns: 120px 120px 120px 120px 120px;*/
 
-	/*grid-template-rows: 5;*/
 }
 
 .pad-pixel {
