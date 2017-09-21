@@ -1,0 +1,12 @@
+* {
+	border: 1px solid black;
+}
+
+nav {
+	display: none;
+}
+
+.pad {
+	height: 100%;
+	width: 100%;
+}
