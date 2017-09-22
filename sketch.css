@@ -1,7 +1,11 @@
-nav {
+nav, .clear-btn {
 	/*display: none;*/
 	text-align: center;
 	margin: 20px 0;
+}
+
+h1 {
+	font-size: 3.5em;
 }
 
 .container {
@@ -24,5 +28,6 @@ nav {
 	/*height: 120px;*/
 	/*width: 120px;*/
 	border: .1px solid black;	
+	/*border-radius: 100%;*/
 	/*display: inline-block;*/
 }
