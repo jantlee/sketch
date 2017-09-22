@@ -16,6 +16,13 @@ $(document).ready(function() {
 		}
 	}
 
+	function draw() {
+		$('.pad-pixel').on('mouseenter', function() {
+			$(this).css('background-color','black');
+		});
+	}
+
 	setGridColumns();
 	setGridCells();
+	draw()
 });
