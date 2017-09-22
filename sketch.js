@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var inputNum = 16; //Eventually allow user-input via prompt
+    var inputNum = 16; //Init at 16. Can be changed by user.
     var cellSize = $('.container').height() / inputNum;
     var gridCol;
     var bubbleMode;
@@ -30,7 +30,12 @@ $(document).ready(function() {
     }
 
     function promptForSize() {
-        var size = prompt('What size would you like the grid to be?');
+        var size = prompt('What size would you like the grid to be?','Enter a number between 0 and 100');
+        if (size > 100 || size <= 0) {
+        	alert('Invalid input');
+        	promptForSize();
+        }
+
         inputNum = size;
         cellSize = $('.container').height() / inputNum;
 
