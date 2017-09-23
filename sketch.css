@@ -19,6 +19,8 @@ h1 {
 	height: inherit;
 	width: inherit;
 	display: inline-grid;
+	/*grid-gap: .1px;*/
+	/*background-color: black;*/
 	margin: 0;
 	padding: 0;
 
@@ -27,7 +29,12 @@ h1 {
 .pad-pixel {
 	/*height: 120px;*/
 	/*width: 120px;*/
-	border: .1px solid black;	
+	/*opacity: 0;*/
+	border: .1px solid black; 	
 	/*border-radius: 100%;*/
 	/*display: inline-block;*/
+}
+
+.return-cell {
+	/*opacity: .1;*/
 }

@@ -23,17 +23,45 @@ $(document).ready(function() {
         }
     }
 
+    // function draw() {
+    //     $('.pad-pixel').on('mouseenter', function() {
+    //         $(this).css('background-color', 'black');
+    //     });
+    // }
+
     function draw() {
         $('.pad-pixel').on('mouseenter', function() {
-            $(this).css('background-color', 'black');
+            /*is this the first time you've entered this cell?
+            Does it have return cell class?*/
+            if ($(this).hasClass('return-cell')) {//if not first time
+                // console.log($(this).css('opacity'));
+                var opacity = $(this).css('background-color');
+                var rgbaSplit = opacity.split(',');
+                var rgbAlpha = parseFloat(parseFloat(rgbaSplit[3].slice(0, -1)).toFixed(1));
+                rgbAlpha+=.2;
+                console.log('alpha: '+ rgbAlpha);                
+                // console.log(rgbaSplit);
+                rgbaSplit[3] = " "+rgbAlpha+")";
+                $(this).css('background-color', rgbaSplit.join());
+                //toFixed for rounding
+                // opacity += .1;
+                // console.log('new opacity: '+opacity);
+                // $(this).css('opacity', opacity);
+                //set bg-color to black and add return cell class
+            }  else { //if first time
+                $(this).css('background-color', 'rgba(0,0,0,.1)');
+                $(this).addClass('return-cell');
+                console.log("new cell")
+                //increment return cell opacity by .1
+            }
         });
     }
 
     function promptForSize() {
-        var size = prompt('What size would you like the grid to be?','Enter a number between 0 and 100');
+        var size = prompt('What size would you like the grid to be?', 'Enter a number between 0 and 100');
         if (size > 100 || size <= 0) {
-        	alert('Invalid input');
-        	promptForSize();
+            alert('Invalid input');
+            promptForSize();
         }
 
         inputNum = size;
