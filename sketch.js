@@ -33,22 +33,26 @@ $(document).ready(function() {
         $('.pad-pixel').on('mouseenter', function() {
             /*is this the first time you've entered this cell?
             Does it have return cell class?*/
-            if ($(this).hasClass('return-cell')) {//if not first time
+            if ($(this).hasClass('return-cell')) { //if not first time
                 // console.log($(this).css('opacity'));
                 var opacity = $(this).css('background-color');
                 var rgbaSplit = opacity.split(',');
                 var rgbAlpha = parseFloat(parseFloat(rgbaSplit[3].slice(0, -1)).toFixed(1));
-                rgbAlpha+=.2;
-                console.log('alpha: '+ rgbAlpha);                
-                // console.log(rgbaSplit);
-                rgbaSplit[3] = " "+rgbAlpha+")";
-                $(this).css('background-color', rgbaSplit.join());
-                //toFixed for rounding
-                // opacity += .1;
-                // console.log('new opacity: '+opacity);
-                // $(this).css('opacity', opacity);
+                if (rgbAlpha < .9) {
+                    console.log('alpha: ' + rgbAlpha);
+                    rgbAlpha += .1;
+                    // console.log(rgbaSplit);
+                    rgbaSplit[3] = " " + rgbAlpha + ")";
+                    $(this).css('background-color', rgbaSplit.join());
+                    //toFixed for rounding
+                    // opacity += .1;
+                    // console.log('new opacity: '+opacity);
+                    // $(this).css('opacity', opacity);
+                } else {
+                    // console.log('greater than one');
+                }
                 //set bg-color to black and add return cell class
-            }  else { //if first time
+            } else { //if first time
                 $(this).css('background-color', 'rgba(0,0,0,.1)');
                 $(this).addClass('return-cell');
                 console.log("new cell")
