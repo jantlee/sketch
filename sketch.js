@@ -4,6 +4,8 @@ $(document).ready(function() {
     var gridCol;
     var bubbleMode;
     var gridMode;
+    var monoMode;
+    var rainbowMode;
 
     function setGridColumns() {
         gridCol = '';
@@ -23,40 +25,43 @@ $(document).ready(function() {
         }
     }
 
-    // function draw() {
-    //     $('.pad-pixel').on('mouseenter', function() {
-    //         $(this).css('background-color', 'black');
-    //     });
-    // }
-
     function draw() {
         $('.pad-pixel').on('mouseenter', function() {
-            /*is this the first time you've entered this cell?
-            Does it have return cell class?*/
             if ($(this).hasClass('return-cell')) { //if not first time
-                // console.log($(this).css('opacity'));
                 var opacity = $(this).css('background-color');
                 var rgbaSplit = opacity.split(',');
                 var rgbAlpha = parseFloat(parseFloat(rgbaSplit[3].slice(0, -1)).toFixed(1));
                 if (rgbAlpha < .9) {
-                    console.log('alpha: ' + rgbAlpha);
                     rgbAlpha += .1;
-                    // console.log(rgbaSplit);
-                    rgbaSplit[3] = " " + rgbAlpha + ")";
-                    $(this).css('background-color', rgbaSplit.join());
-                    //toFixed for rounding
-                    // opacity += .1;
-                    // console.log('new opacity: '+opacity);
-                    // $(this).css('opacity', opacity);
+                    if (rainbowMode == true) {
+                        rgbaSplit[0] = "rgba(" + Math.floor(Math.random() * 255);
+                        rgbaSplit[1] = Math.floor(Math.random() * 255);
+                        rgbaSplit[2] = Math.floor(Math.random() * 255);
+                    } else {
+                        rgbaSplit[0] = "rgba(0";
+                        rgbaSplit[1] = "0";
+                        rgbaSplit[2] = "0";
+                    }
+                    rgbaSplit[3] = rgbAlpha + ")";
+                    $(this).css('background-color', rgbaSplit.join(", "));
+                    console.log(rgbaSplit.join(", "));
+
                 } else {
-                    // console.log('greater than one');
+                    // Stop the errors!!!
                 }
-                //set bg-color to black and add return cell class
             } else { //if first time
-                $(this).css('background-color', 'rgba(0,0,0,.1)');
+                if (rainbowMode == true) {
+                    var rainbowSplit = [];
+                    rainbowSplit[0] = "rgba(" + Math.floor(Math.random() * 255);
+                    rainbowSplit[1] = Math.floor(Math.random() * 255);
+                    rainbowSplit[2] = Math.floor(Math.random() * 255);
+                    rainbowSplit[3] = '.1)';
+                    console.log(rainbowSplit.join());
+                    $(this).css('background-color', rainbowSplit.join());
+                } else {
+                    $(this).css('background-color', 'rgba(0,0,0,.1)');
+                }
                 $(this).addClass('return-cell');
-                console.log("new cell")
-                //increment return cell opacity by .1
             }
         });
     }
@@ -73,6 +78,16 @@ $(document).ready(function() {
 
     }
 
+    function activateMono() {
+        rainbowMode = false;
+        monoMode = true;
+    }
+
+    function activateRainbow() {
+        monoMode = false;
+        rainbowMode = true;
+    }
+
     function activateGrid() {
         bubbleMode = false;
         gridMode = true;
@@ -80,8 +95,8 @@ $(document).ready(function() {
     }
 
     function activateBubble() {
-        bubbleMode = true;
         gridMode = false;
+        bubbleMode = true;
         $('.pad-pixel').css('border-radius', '100%');
     }
 
@@ -107,4 +122,6 @@ $(document).ready(function() {
 
     $('#grid').on('click', activateGrid);
     $('#bubble').on('click', activateBubble);
+    $('#rainbow').on('click', activateRainbow);
+    $('#mono').on('click', activateMono);
 });
